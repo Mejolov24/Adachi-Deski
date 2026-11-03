@@ -1,0 +1,59 @@
+[gd_scene format=3 uid="uid://v6rt5jygthto"]
+
+[ext_resource type="Script" uid="uid://d4e3yb7tt58fj" path="res://main.gd" id="1_h2yge"]
+[ext_resource type="Texture2D" uid="uid://dxed4odo71u1f" path="res://resources/queen/body.png" id="1_ig7tw"]
+[ext_resource type="Texture2D" uid="uid://ckiwu3dk7jhko" path="res://resources/queen/normal_head.png" id="2_0xm2m"]
+[ext_resource type="Texture2D" uid="uid://cckisees4hbk" path="res://resources/queen/closed_eyes_head.png" id="3_h2yge"]
+[ext_resource type="Texture2D" uid="uid://dxa3fcfv4bq6t" path="res://resources/queen/Blush-PNG-Image-4236389481.png" id="5_lquwl"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_l083t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_0xm2m")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_h2yge")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="Control" type="Control" unique_id=1716546141 node_paths=PackedStringArray("head", "blush", "pat_area")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_h2yge")
+head = NodePath("head")
+blush = NodePath("blush")
+pat_area = NodePath("pat_area")
+
+[node name="body" type="Sprite2D" parent="." unique_id=708291939]
+position = Vector2(134.40001, 411.5)
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_ig7tw")
+offset = Vector2(5, -5)
+
+[node name="head" type="AnimatedSprite2D" parent="." unique_id=794672110]
+position = Vector2(126.40001, 115.5)
+scale = Vector2(0.2, 0.2)
+sprite_frames = SubResource("SpriteFrames_l083t")
+
+[node name="blush" type="Sprite2D" parent="." unique_id=1846801983]
+modulate = Color(1, 1, 1, 0)
+self_modulate = Color(1, 1, 0, 1)
+position = Vector2(122, 142)
+rotation = 0.08726646
+scale = Vector2(0.07, 0.07)
+texture = ExtResource("5_lquwl")
+
+[node name="pat_area" type="Control" parent="." unique_id=804567851]
+anchors_preset = 0
+offset_left = 88.0
+offset_top = 80.0
+offset_right = 168.0
+offset_bottom = 176.0
