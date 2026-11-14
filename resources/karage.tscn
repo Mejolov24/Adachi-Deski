@@ -1,0 +1,39 @@
+[gd_scene format=3 uid="uid://bwe3tllqvcgfo"]
+
+[ext_resource type="Script" uid="uid://b7gopjw742qqb" path="res://resources/scripts/karage.gd" id="1_08p63"]
+[ext_resource type="Texture2D" uid="uid://dvk1q6gno1yb6" path="res://resources/sprites/icon_spritesheet.png" id="1_wx8t0"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_nn8ea"]
+radius = 12.0
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_l083t"]
+radius = 24.0
+
+[node name="karage" type="RigidBody2D" unique_id=1112642816 node_paths=PackedStringArray("area", "sprite", "sprite_2", "collision_1", "collision_2")]
+input_pickable = true
+script = ExtResource("1_08p63")
+area = NodePath("Area2D")
+sprite = NodePath("karage")
+sprite_2 = NodePath("karage2")
+collision_1 = NodePath("CollisionShape2D")
+collision_2 = NodePath("Area2D/CollisionShape2D")
+
+[node name="karage" type="Sprite2D" parent="." unique_id=625696520]
+texture_filter = 1
+texture = ExtResource("1_wx8t0")
+hframes = 4
+frame = 1
+
+[node name="karage2" type="Sprite2D" parent="." unique_id=1521258393]
+texture_filter = 1
+texture = ExtResource("1_wx8t0")
+hframes = 2
+frame = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1463820905]
+shape = SubResource("CircleShape2D_nn8ea")
+
+[node name="Area2D" type="Area2D" parent="." unique_id=332168332 groups=["food"]]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D" unique_id=1533644914]
+shape = SubResource("CircleShape2D_l083t")

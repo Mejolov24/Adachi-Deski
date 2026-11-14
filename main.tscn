@@ -1,59 +1,239 @@
 [gd_scene format=3 uid="uid://v6rt5jygthto"]
 
-[ext_resource type="Script" uid="uid://d4e3yb7tt58fj" path="res://main.gd" id="1_h2yge"]
+[ext_resource type="Script" uid="uid://d4e3yb7tt58fj" path="res://resources/scripts/main.gd" id="1_h2yge"]
 [ext_resource type="Texture2D" uid="uid://dxed4odo71u1f" path="res://resources/queen/body.png" id="1_ig7tw"]
-[ext_resource type="Texture2D" uid="uid://ckiwu3dk7jhko" path="res://resources/queen/normal_head.png" id="2_0xm2m"]
-[ext_resource type="Texture2D" uid="uid://cckisees4hbk" path="res://resources/queen/closed_eyes_head.png" id="3_h2yge"]
+[ext_resource type="AudioStream" uid="uid://depr6r33d7dwx" path="res://resources/audio/eat_1.mp3" id="2_ycdy4"]
+[ext_resource type="Texture2D" uid="uid://trsq6gp1qhuk" path="res://resources/queen/open.png" id="3_kek77"]
+[ext_resource type="AudioStream" uid="uid://rgskgtpct7lg" path="res://resources/audio/eat_2.mp3" id="3_w48qg"]
+[ext_resource type="Texture2D" uid="uid://cqxfjtqb8ob1v" path="res://resources/queen/closed.png" id="4_4c57u"]
+[ext_resource type="AudioStream" uid="uid://bk2dqdpr158wl" path="res://resources/audio/ah.wav" id="5_2cqfq"]
+[ext_resource type="Texture2D" uid="uid://g8k6i62djxwb" path="res://resources/queen/mouth.png" id="5_efxa6"]
 [ext_resource type="Texture2D" uid="uid://dxa3fcfv4bq6t" path="res://resources/queen/Blush-PNG-Image-4236389481.png" id="5_lquwl"]
+[ext_resource type="AudioStream" uid="uid://cuwt8qtsqt6v3" path="res://resources/audio/ah_2.wav" id="6_2cqfq"]
+[ext_resource type="Theme" uid="uid://bjxy148vot7yt" path="res://resources/theme.tres" id="6_5vw27"]
+[ext_resource type="Texture2D" uid="uid://dvk1q6gno1yb6" path="res://resources/sprites/icon_spritesheet.png" id="6_7mycd"]
+[ext_resource type="AudioStream" uid="uid://ca7rp5tc0nbag" path="res://resources/audio/ah_3.wav" id="6_074og"]
+[ext_resource type="Texture2D" uid="uid://d3dx4uu4tvlc2" path="res://resources/queen/mouth_2.png" id="6_dg77c"]
+[ext_resource type="Texture2D" uid="uid://4x2unforb3nh" path="res://resources/sprites/chiken_bucket.png" id="7_272bh"]
+[ext_resource type="AudioStream" uid="uid://d1e8tnrhcnydi" path="res://resources/audio/mah.wav" id="7_cegan"]
+[ext_resource type="AudioStream" uid="uid://cevqfsbonm0v3" path="res://resources/audio/mah_2.wav" id="8_82xsv"]
+[ext_resource type="AudioStream" uid="uid://n0ygt0rfrspb" path="res://resources/audio/mhm.wav" id="9_82xsv"]
+[ext_resource type="PackedScene" uid="uid://bwe3tllqvcgfo" path="res://resources/karage.tscn" id="9_kek77"]
+[ext_resource type="AudioStream" uid="uid://dkd0lwcng321t" path="res://resources/audio/mhm_2.wav" id="10_getpj"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_l083t"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_0xm2m")
+"texture": ExtResource("3_kek77")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_h2yge")
+"texture": ExtResource("4_4c57u")
 }],
 "loop": 1,
 "name": &"default",
 "speed": 5.0
 }]
 
-[node name="Control" type="Control" unique_id=1716546141 node_paths=PackedStringArray("head", "blush", "pat_area")]
+[sub_resource type="SpriteFrames" id="SpriteFrames_kek77"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_efxa6")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_dg77c")
+}],
+"loop": 1,
+"name": &"default",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_4c57u"]
+radius = 48.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_nn8ea"]
+bg_color = Color(1, 0, 0, 1)
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.28235295, 0, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lquwl"]
+bg_color = Color(1, 0.30980393, 0, 1)
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.28235295, 0, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_l083t"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_08p63"]
+normal = Vector2(-1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_kek77"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_4c57u"]
+normal = Vector2(0, 1)
+
+[node name="Control" type="Control" unique_id=1716546141 node_paths=PackedStringArray("head", "mouth", "blush", "pat_area", "pat_bar", "food_bar", "chiken_bucket", "rei_audio", "other_audio")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 script = ExtResource("1_h2yge")
 head = NodePath("head")
+mouth = NodePath("mouth")
 blush = NodePath("blush")
 pat_area = NodePath("pat_area")
+pat_bar = NodePath("pat_bar")
+food_bar = NodePath("food_bar")
+chiken_bucket = NodePath("Panel")
+chiken_scene = ExtResource("9_kek77")
+rei_audio = NodePath("AudioStreamPlayer")
+other_audio = NodePath("AudioStreamPlayer2")
+eat_sounds = Array[AudioStream]([ExtResource("2_ycdy4"), ExtResource("3_w48qg")])
+rei_sounds = Array[AudioStream]([ExtResource("5_2cqfq"), ExtResource("6_2cqfq"), ExtResource("6_074og"), ExtResource("7_cegan"), ExtResource("8_82xsv")])
+eat_sounds_2 = Array[AudioStream]([ExtResource("9_82xsv"), ExtResource("10_getpj")])
 
 [node name="body" type="Sprite2D" parent="." unique_id=708291939]
-position = Vector2(134.40001, 411.5)
+position = Vector2(142.40001, 347.5)
 scale = Vector2(0.2, 0.2)
 texture = ExtResource("1_ig7tw")
 offset = Vector2(5, -5)
 
 [node name="head" type="AnimatedSprite2D" parent="." unique_id=794672110]
-position = Vector2(126.40001, 115.5)
+position = Vector2(134.40001, 51.5)
 scale = Vector2(0.2, 0.2)
 sprite_frames = SubResource("SpriteFrames_l083t")
+
+[node name="mouth" type="AnimatedSprite2D" parent="." unique_id=327165679]
+position = Vector2(134.40001, 51.5)
+scale = Vector2(0.2, 0.2)
+sprite_frames = SubResource("SpriteFrames_kek77")
+frame_progress = 0.46451518
 
 [node name="blush" type="Sprite2D" parent="." unique_id=1846801983]
 modulate = Color(1, 1, 1, 0)
 self_modulate = Color(1, 1, 0, 1)
-position = Vector2(122, 142)
+position = Vector2(130, 78)
 rotation = 0.08726646
 scale = Vector2(0.07, 0.07)
 texture = ExtResource("5_lquwl")
 
-[node name="pat_area" type="Control" parent="." unique_id=804567851]
-anchors_preset = 0
-offset_left = 88.0
-offset_top = 80.0
-offset_right = 168.0
-offset_bottom = 176.0
+[node name="pat_area" type="Area2D" parent="." unique_id=521267161 groups=["food"]]
+position = Vector2(136, 58)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="pat_area" unique_id=614655796]
+shape = SubResource("CircleShape2D_4c57u")
+
+[node name="pat_bar" type="ProgressBar" parent="." unique_id=1355460743]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 272.0
+offset_right = 40.0
+offset_bottom = 568.0
+mouse_filter = 2
+theme = ExtResource("6_5vw27")
+theme_override_colors/font_color = Color(0.9490196, 0.9490196, 0.9490196, 0)
+theme_override_styles/fill = SubResource("StyleBoxFlat_nn8ea")
+max_value = 1.0
+step = 0.0
+value = 0.685
+fill_mode = 3
+
+[node name="food_bar" type="ProgressBar" parent="." unique_id=1069647989]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 272.0
+offset_right = 72.0
+offset_bottom = 568.0
+mouse_filter = 2
+theme = ExtResource("6_5vw27")
+theme_override_colors/font_color = Color(0.9490196, 0.9490196, 0.9490196, 0)
+theme_override_styles/fill = SubResource("StyleBoxFlat_lquwl")
+max_value = 1.0
+step = 0.0
+value = 0.55
+fill_mode = 3
+
+[node name="hearth" type="Panel" parent="." unique_id=1275149066]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 240.0
+offset_right = 40.0
+offset_bottom = 264.0
+mouse_filter = 2
+theme = ExtResource("6_5vw27")
+
+[node name="Sprite2D" type="Sprite2D" parent="hearth" unique_id=634481874]
+texture_filter = 1
+position = Vector2(11, 11)
+texture = ExtResource("6_7mycd")
+hframes = 4
+region_rect = Rect2(0, 0, 24, 0)
+
+[node name="food" type="Panel" parent="." unique_id=994740638]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 240.0
+offset_right = 72.0
+offset_bottom = 264.0
+mouse_filter = 2
+theme = ExtResource("6_5vw27")
+
+[node name="Sprite2D" type="Sprite2D" parent="food" unique_id=1038948142]
+texture_filter = 1
+position = Vector2(12, 12)
+texture = ExtResource("6_7mycd")
+hframes = 4
+frame = 1
+region_rect = Rect2(0, 0, 24, 0)
+
+[node name="Panel" type="Button" parent="." unique_id=222284346]
+layout_mode = 0
+offset_left = 112.0
+offset_top = 432.0
+offset_right = 248.0
+offset_bottom = 568.0
+mouse_filter = 1
+theme = ExtResource("6_5vw27")
+
+[node name="ChikenBucket" type="Sprite2D" parent="Panel" unique_id=1578178004]
+texture_filter = 1
+position = Vector2(69, 67)
+texture = ExtResource("7_272bh")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1706994786]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=917837673]
+position = Vector2(128, 576)
+shape = SubResource("WorldBoundaryShape2D_l083t")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D" unique_id=1332448573]
+position = Vector2(256, 256)
+shape = SubResource("WorldBoundaryShape2D_08p63")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D" unique_id=1848864426]
+position = Vector2(0, 256)
+shape = SubResource("WorldBoundaryShape2D_kek77")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D" unique_id=1952805548]
+position = Vector2(128, 0)
+shape = SubResource("WorldBoundaryShape2D_4c57u")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=896156024]
+max_polyphony = 4
+
+[node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="." unique_id=1319275997]
+max_polyphony = 4

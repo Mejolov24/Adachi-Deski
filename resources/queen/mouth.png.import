@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cckisees4hbk"
-path="res://.godot/imported/closed_eyes_head.png-ab4afe12e6923fe954a00048b5f95d34.ctex"
+uid="uid://g8k6i62djxwb"
+path="res://.godot/imported/mouth.png-fec8ca831ae5968a4fd77388ccc665b9.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://resources/queen/closed_eyes_head.png"
-dest_files=["res://.godot/imported/closed_eyes_head.png-ab4afe12e6923fe954a00048b5f95d34.ctex"]
+source_file="res://resources/queen/mouth.png"
+dest_files=["res://.godot/imported/mouth.png-fec8ca831ae5968a4fd77388ccc665b9.ctex"]
 
 [params]
 
