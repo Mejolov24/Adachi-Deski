@@ -1,5 +1,6 @@
 # Adachi-Deski
 Adachi rei as a silly desktop companion, she's just happy to be there :)
+
 ![icon](https://github.com/Mejolov24/Adachi-Deski/blob/main/icon.png?raw=true)
 
 ![preview](https://github.com/Mejolov24/Adachi-Deski/blob/main/thumbnail.gif?raw=true)
