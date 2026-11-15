@@ -83,7 +83,7 @@ normal = Vector2(1, 0)
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_4c57u"]
 normal = Vector2(0, 1)
 
-[node name="Control" type="Control" unique_id=1716546141 node_paths=PackedStringArray("head", "mouth", "blush", "pat_area", "pat_bar", "food_bar", "chiken_bucket", "rei_audio", "other_audio")]
+[node name="Control" type="Control" unique_id=1716546141 node_paths=PackedStringArray("head", "mouth", "blush", "pat_area", "pat_bar", "food_bar", "chiken_bucket", "rei_audio", "other_audio", "karage_container")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -102,6 +102,8 @@ chiken_bucket = NodePath("Panel")
 chiken_scene = ExtResource("9_kek77")
 rei_audio = NodePath("AudioStreamPlayer")
 other_audio = NodePath("AudioStreamPlayer2")
+karage_container = NodePath("karage_container")
+disable_resonance_fix = true
 eat_sounds = Array[AudioStream]([ExtResource("2_ycdy4"), ExtResource("3_w48qg")])
 rei_sounds = Array[AudioStream]([ExtResource("5_2cqfq"), ExtResource("6_2cqfq"), ExtResource("6_074og"), ExtResource("7_cegan"), ExtResource("8_82xsv")])
 eat_sounds_2 = Array[AudioStream]([ExtResource("9_82xsv"), ExtResource("10_getpj")])
@@ -237,3 +239,5 @@ max_polyphony = 4
 
 [node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="." unique_id=1319275997]
 max_polyphony = 4
+
+[node name="karage_container" type="Node" parent="." unique_id=993846336]

@@ -1,14 +1,25 @@
 extends RigidBody2D
-@export var area : Area2D
+@export var delete_time : float = 15
 @export var follow_force: float = 1024.0
 @export var max_speed: float = 512.0
 @export var damping: float = 32.0
+
+@export var area : Area2D
 @export var sprite : Sprite2D
 @export var sprite_2 : Sprite2D
 @export var collision_1 : CollisionShape2D
 @export var collision_2 : CollisionShape2D
+@export var disable_resonance_fix : bool = false
+var delete_timer : Timer
+var delete_tween : Tween
+
 var holding : bool = false;
 var hovering : bool = false;
+
+func delete():
+	delete_tween = create_tween()
+	delete_tween.finished.connect(queue_free)
+	delete_tween.tween_property(self, "modulate:a",0,1)
 
 func set_karage_type(type : bool):
 	sprite.visible = !type
@@ -22,10 +33,17 @@ func set_size(size : float):
 	collision_2.scale = _scale
 
 func _ready() -> void:
-	area.mouse_entered.connect(entered)
-	area.mouse_exited.connect(exited)
+	area.mouse_entered.connect(func(): hovering = true)
+	area.mouse_exited.connect(func(): hovering = false)
 	set_karage_type(randi_range(0,1))
 	set_size(randf_range(1,2))
+	
+	if(disable_resonance_fix): return
+	delete_timer =  Timer.new()
+	delete_timer.wait_time = delete_time
+	delete_timer.timeout.connect(delete)
+	add_child(delete_timer)
+	delete_timer.start()
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
@@ -34,12 +52,8 @@ func _input(event: InputEvent) -> void:
 				holding = hovering
 			else:
 				holding = false
-func entered():
-	hovering = true
-func exited():
-	hovering = false
 
-func _physics_process(delta: float) -> void:
+func _physics_process(_delta: float) -> void:
 	if(!holding) : return
 	var mouse_pos = get_global_mouse_position()
 	var direction = mouse_pos - global_position
