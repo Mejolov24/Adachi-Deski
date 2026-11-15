@@ -1,0 +1,7 @@
+[gd_scene format=3 uid="uid://cliebd32xb3sr"]
+
+[ext_resource type="Script" uid="uid://br2m6xe1poawt" path="res://UI_tweener.gd" id="1_omdlb"]
+
+[node name="Area2D" type="Area2D" unique_id=1407736541]
+script = ExtResource("1_omdlb")
+hide_timeout = 1.5

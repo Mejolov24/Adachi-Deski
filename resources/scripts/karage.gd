@@ -38,11 +38,11 @@ func _ready() -> void:
 	set_karage_type(randi_range(0,1))
 	set_size(randf_range(1,2))
 	
-	if(disable_resonance_fix): return
 	delete_timer =  Timer.new()
 	delete_timer.wait_time = delete_time
 	delete_timer.timeout.connect(delete)
 	add_child(delete_timer)
+	if(disable_resonance_fix): return
 	delete_timer.start()
 
 func _input(event: InputEvent) -> void:

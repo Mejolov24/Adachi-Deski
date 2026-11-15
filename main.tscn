@@ -20,6 +20,8 @@
 [ext_resource type="AudioStream" uid="uid://n0ygt0rfrspb" path="res://resources/audio/mhm.wav" id="9_82xsv"]
 [ext_resource type="PackedScene" uid="uid://bwe3tllqvcgfo" path="res://resources/karage.tscn" id="9_kek77"]
 [ext_resource type="AudioStream" uid="uid://dkd0lwcng321t" path="res://resources/audio/mhm_2.wav" id="10_getpj"]
+[ext_resource type="Script" uid="uid://br2m6xe1poawt" path="res://UI_tweener.gd" id="20_getpj"]
+[ext_resource type="PackedScene" uid="uid://hltnrxfcydvo" path="res://fancy_slider.tscn" id="22_ryguw"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_l083t"]
 animations = [{
@@ -83,7 +85,10 @@ normal = Vector2(1, 0)
 [sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_4c57u"]
 normal = Vector2(0, 1)
 
-[node name="Control" type="Control" unique_id=1716546141 node_paths=PackedStringArray("head", "mouth", "blush", "pat_area", "pat_bar", "food_bar", "chiken_bucket", "rei_audio", "other_audio", "karage_container")]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l083t"]
+size = Vector2(154, 154)
+
+[node name="Control" type="Control" unique_id=1716546141 node_paths=PackedStringArray("head", "body", "mouth", "blush", "pat_area", "pat_bar", "food_bar", "chiken_bucket", "rei_audio", "other_audio", "karage_container")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -93,17 +98,17 @@ grow_vertical = 2
 mouse_filter = 1
 script = ExtResource("1_h2yge")
 head = NodePath("head")
+body = NodePath("body")
 mouth = NodePath("mouth")
 blush = NodePath("blush")
 pat_area = NodePath("pat_area")
 pat_bar = NodePath("pat_bar")
 food_bar = NodePath("food_bar")
-chiken_bucket = NodePath("Panel")
+chiken_bucket = NodePath("ChikenBuckerTween/Panel")
 chiken_scene = ExtResource("9_kek77")
 rei_audio = NodePath("AudioStreamPlayer")
 other_audio = NodePath("AudioStreamPlayer2")
 karage_container = NodePath("karage_container")
-disable_resonance_fix = true
 eat_sounds = Array[AudioStream]([ExtResource("2_ycdy4"), ExtResource("3_w48qg")])
 rei_sounds = Array[AudioStream]([ExtResource("5_2cqfq"), ExtResource("6_2cqfq"), ExtResource("6_074og"), ExtResource("7_cegan"), ExtResource("8_82xsv")])
 eat_sounds_2 = Array[AudioStream]([ExtResource("9_82xsv"), ExtResource("10_getpj")])
@@ -137,6 +142,7 @@ texture = ExtResource("5_lquwl")
 position = Vector2(136, 58)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="pat_area" unique_id=614655796]
+position = Vector2(0, -10)
 shape = SubResource("CircleShape2D_4c57u")
 
 [node name="pat_bar" type="ProgressBar" parent="." unique_id=1355460743]
@@ -202,20 +208,6 @@ hframes = 4
 frame = 1
 region_rect = Rect2(0, 0, 24, 0)
 
-[node name="Panel" type="Button" parent="." unique_id=222284346]
-layout_mode = 0
-offset_left = 112.0
-offset_top = 432.0
-offset_right = 248.0
-offset_bottom = 568.0
-mouse_filter = 1
-theme = ExtResource("6_5vw27")
-
-[node name="ChikenBucket" type="Sprite2D" parent="Panel" unique_id=1578178004]
-texture_filter = 1
-position = Vector2(69, 67)
-texture = ExtResource("7_272bh")
-
 [node name="StaticBody2D" type="StaticBody2D" parent="." unique_id=1706994786]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D" unique_id=917837673]
@@ -234,10 +226,127 @@ shape = SubResource("WorldBoundaryShape2D_kek77")
 position = Vector2(128, 0)
 shape = SubResource("WorldBoundaryShape2D_4c57u")
 
+[node name="karage_container" type="Node2D" parent="." unique_id=725623971]
+
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=896156024]
 max_polyphony = 4
 
 [node name="AudioStreamPlayer2" type="AudioStreamPlayer" parent="." unique_id=1319275997]
 max_polyphony = 4
 
-[node name="karage_container" type="Node" parent="." unique_id=993846336]
+[node name="Button" type="Button" parent="." unique_id=966716218]
+layout_mode = 0
+offset_left = 216.0
+offset_right = 256.0
+offset_bottom = 40.0
+theme = ExtResource("6_5vw27")
+toggle_mode = true
+
+[node name="ChikenBuckerTween" type="Area2D" parent="." unique_id=448388443 node_paths=PackedStringArray("target")]
+position = Vector2(112, 432)
+script = ExtResource("20_getpj")
+target = NodePath("Panel")
+hide_position = Vector2(144, 0)
+easing = 1
+transition = 4
+metadata/_custom_type_script = "uid://br2m6xe1poawt"
+
+[node name="Panel" type="Button" parent="ChikenBuckerTween" unique_id=222284346]
+offset_right = 136.0
+offset_bottom = 136.0
+mouse_filter = 1
+theme = ExtResource("6_5vw27")
+
+[node name="ChikenBucket" type="Sprite2D" parent="ChikenBuckerTween/Panel" unique_id=1578178004]
+texture_filter = 1
+position = Vector2(69, 67)
+texture = ExtResource("7_272bh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ChikenBuckerTween" unique_id=447828651]
+position = Vector2(67, 67)
+shape = SubResource("RectangleShape2D_l083t")
+
+[node name="SettingsTweener" type="Area2D" parent="." unique_id=745924866 node_paths=PackedStringArray("target")]
+script = ExtResource("20_getpj")
+target = NodePath("settings")
+hide_position = Vector2(0, -248)
+show_position = Vector2(0, 8)
+easing = 1
+transition = 7
+metadata/_custom_type_script = "uid://br2m6xe1poawt"
+
+[node name="settings" type="Panel" parent="SettingsTweener" unique_id=1966772484]
+offset_left = 8.0
+offset_top = -248.43
+offset_right = 192.0
+offset_bottom = -8.429993
+theme = ExtResource("6_5vw27")
+
+[node name="happynes_decay" parent="SettingsTweener/settings" unique_id=623857584 instance=ExtResource("22_ryguw")]
+layout_mode = 0
+offset_left = 11.0
+offset_top = 24.429993
+offset_right = 171.0
+offset_bottom = 40.429993
+min_value = 1.0
+Name = "Happiness decay"
+
+[node name="happynes_max" parent="SettingsTweener/settings" unique_id=1320067507 instance=ExtResource("22_ryguw")]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 64.42999
+offset_right = 173.0
+offset_bottom = 80.42999
+min_value = 128.0
+max_value = 1024.0
+value = 412.0
+Name = "Max Happiness"
+
+[node name="food_Decay" parent="SettingsTweener/settings" unique_id=840346112 instance=ExtResource("22_ryguw")]
+layout_mode = 0
+offset_left = 12.0
+offset_top = 117.42999
+offset_right = 172.0
+offset_bottom = 133.43
+min_value = 1.0
+max_value = 64.0
+Name = "Hungriness decay"
+
+[node name="food_max" parent="SettingsTweener/settings" unique_id=1610199424 instance=ExtResource("22_ryguw")]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 152.43
+offset_right = 173.0
+offset_bottom = 168.43
+min_value = 128.0
+max_value = 1024.0
+value = 412.0
+Name = "Max Hunger"
+
+[node name="CheckButton" type="CheckButton" parent="SettingsTweener/settings" unique_id=580823006]
+layout_mode = 0
+offset_left = 8.0
+offset_top = 200.43
+offset_right = 182.0
+offset_bottom = 224.43
+theme = ExtResource("6_5vw27")
+button_pressed = true
+text = "Chiken explosion fix"
+alignment = 1
+
+[node name="flip" type="CheckButton" parent="SettingsTweener/settings" unique_id=1798239587]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 171.43
+offset_right = 135.0
+offset_bottom = 196.43
+text = "Flip"
+alignment = 1
+
+[connection signal="toggled" from="Button" to="SettingsTweener" method="set_value"]
+[connection signal="value_changed" from="SettingsTweener/settings/happynes_decay" to="." method="_on_happynes_value_changed"]
+[connection signal="value_changed" from="SettingsTweener/settings/happynes_max" to="." method="_on_happynes_max_value_changed"]
+[connection signal="value_changed" from="SettingsTweener/settings/food_Decay" to="." method="_on_food_value_changed"]
+[connection signal="value_changed" from="SettingsTweener/settings/food_max" to="." method="_on_food_max_value_changed"]
+[connection signal="toggled" from="SettingsTweener/settings/CheckButton" to="." method="_on_check_button_toggled"]
+[connection signal="toggled" from="SettingsTweener/settings/flip" to="." method="_on_flip_toggled"]

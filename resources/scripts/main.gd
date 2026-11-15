@@ -1,6 +1,7 @@
 extends Control
 @export_group("Nodes")
 @export var head : AnimatedSprite2D
+@export var body : Sprite2D
 @export var mouth : AnimatedSprite2D
 @export var blush : Sprite2D
 @export var pat_area : Area2D
@@ -101,13 +102,14 @@ func area_in(area : Area2D):
 
 func area_out(_area : Area2D):
 	food_inside = false
+	if(!is_mouse_held): eat()
 	set_mouth(mouth_t.NORMAL)
 
 
 func eat():
 	eat_accumulation += 100
 	pat_accumulation += 10
-	current_food.queue_free()
+	if(current_food): current_food.queue_free()
 	other_audio.stream = eat_sounds.pick_random()
 	other_audio.play()
 	rei_audio.stream = eat_sounds_2.pick_random()
@@ -193,3 +195,40 @@ func _process(delta: float) -> void:
 	pat_process(mouse_speed,delta);
 	eat_process(delta)
 	print(karage_container.get_children().size())
+
+
+func _on_happynes_value_changed(value: float) -> void:
+	pat_decay_rate = value
+
+
+func _on_food_value_changed(value: float) -> void:
+	eat_decay_rate = value
+
+func _on_check_button_toggled(toggled_on: bool) -> void:
+	disable_resonance_fix = !toggled_on
+	for child in karage_container.get_children():
+		child.disable_resonance_fix = !toggled_on
+		if(toggled_on):
+			child.delete_timer.start()
+		else:
+			child.delete_timer.stop()
+
+
+func _on_flip_toggled(value: bool) -> void:
+	head.flip_h = value
+	body.flip_h = value
+	mouth.flip_h = value
+	if(value):
+		head.offset.x = 90
+		mouth.offset.x = 90
+	else:
+		head.offset.x = 0
+		mouth.offset.x = 0
+
+
+func _on_happynes_max_value_changed(value: float) -> void:
+	pat_threshold = value
+
+
+func _on_food_max_value_changed(value: float) -> void:
+	eat_threshold = value

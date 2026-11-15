@@ -23,9 +23,9 @@ Adachi rei as a silly desktop companion, she's just happy to be there :)
  - [ ] Replace Rei's sprites with official ones (thanks retail trash for the suggestion)
 
 ## Pending (For next update): 
- - [ ] Settings
+ - [x] Settings
  - [x] Add timeout to karaage to avoid it overflowing the screen when repeatedly spawned, add a limit so it maxes out at half the screen
- - [ ] Add flip option
+ - [x] Add flip option
  - [x] change default pat meter damping
 
 ## Contributing

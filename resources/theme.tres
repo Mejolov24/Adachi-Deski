@@ -1,7 +1,37 @@
 [gd_resource type="Theme" format=3 uid="uid://bjxy148vot7yt"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_tekt2"]
-bg_color = Color(1, 0.5058824, 0.2, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_886mr"]
+bg_color = Color(1, 0.41960785, 0, 1)
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.28235295, 0, 0, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_size = 1
+shadow_offset = Vector2(-2, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_7ct1h"]
+bg_color = Color(1, 0.41960785, 0, 1)
+skew = Vector2(1.25, 0)
+corner_radius_top_left = 4
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_d4nwg"]
+bg_color = Color(0.50980395, 0.24313726, 0.101960786, 1)
+skew = Vector2(1.25, 0)
+border_width_top = 4
+border_width_bottom = 4
+border_color = Color(0.50980395, 0.24313726, 0.101960786, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+shadow_size = 1
+shadow_offset = Vector2(-3.98, 2.46)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_b751m"]
+bg_color = Color(0.90588236, 0.41568628, 0.12156863, 1)
 border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0.28235295, 0, 0, 1)
@@ -11,9 +41,15 @@ corner_radius_bottom_right = 8
 corner_radius_bottom_left = 8
 
 [resource]
-Button/styles/focus = SubResource("StyleBoxFlat_tekt2")
-Button/styles/hover = SubResource("StyleBoxFlat_tekt2")
-Button/styles/normal = SubResource("StyleBoxFlat_tekt2")
-Button/styles/pressed = SubResource("StyleBoxFlat_tekt2")
-Panel/styles/panel = SubResource("StyleBoxFlat_tekt2")
-ProgressBar/styles/background = SubResource("StyleBoxFlat_tekt2")
+Button/styles/focus = SubResource("StyleBoxFlat_886mr")
+Button/styles/hover = SubResource("StyleBoxFlat_886mr")
+Button/styles/hover_pressed = SubResource("StyleBoxFlat_886mr")
+Button/styles/normal = SubResource("StyleBoxFlat_886mr")
+Button/styles/pressed = SubResource("StyleBoxFlat_886mr")
+CheckButton/font_sizes/font_size = 14
+HSlider/styles/grabber_area = SubResource("StyleBoxFlat_7ct1h")
+HSlider/styles/grabber_area_highlight = SubResource("StyleBoxFlat_7ct1h")
+HSlider/styles/slider = SubResource("StyleBoxFlat_d4nwg")
+Label/constants/outline_size = 4
+Panel/styles/panel = SubResource("StyleBoxFlat_b751m")
+ProgressBar/styles/background = SubResource("StyleBoxFlat_b751m")
