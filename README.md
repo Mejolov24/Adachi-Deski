@@ -17,6 +17,7 @@ Adachi rei as a silly desktop companion, she's just happy to be there :)
  - [ ] Boot animation
  - [ ] Shaders
  - [ ] Settings
+ - [ ] Replace Rei's sprites with official ones (thanks retail trash for the suggestion)
 
 ## Contributing
 [Pull requests](https://github.com/Mejolov24/Adachi-Deski/pulls) are welcome! Any reasonable feature or improvement is appreciated.
