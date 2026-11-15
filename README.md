@@ -8,6 +8,10 @@ Adachi rei as a silly desktop companion, she's just happy to be there :)
 
 ### Get the lastest release [here](https://github.com/Mejolov24/Adachi-Deski/releases/latest)
 
+## How to take care of her
+ - every now and then give her karaage from the bucket (she needs it for her CPU)
+ - pat her frecuently or she will feel sad (just shake your mouse in her head)
+
 ## Features:
  - Pet her
  - Feed her
@@ -18,13 +22,14 @@ Adachi rei as a silly desktop companion, she's just happy to be there :)
  - [ ] Shaders
  - [ ] Settings
  - [ ] Replace Rei's sprites with official ones (thanks retail trash for the suggestion)
+ - [ ] Add timeout to karaage to avoid it overflowing the screen when repeatedly spawned, add a limit so it maxes out at half the screen
 
 ## Contributing
 [Pull requests](https://github.com/Mejolov24/Adachi-Deski/pulls) are welcome! Any reasonable feature or improvement is appreciated.
 
 ### Rules
  - **Content** No NSFW content
- - **Art Style** must use HEPT32 color pallet for sprites, except realistic sprites like rei, for her, any is welcome, even full color
+ - **Art Style** must use HEPT32 color pallet for sprites, except realistic sprites like Rei, for her, any is welcome, even full color
  - **AI** While AI usage is accepted for coding help, you cannot:
     - Use an AI agent to do it for you
     - Use Generative AI for art
