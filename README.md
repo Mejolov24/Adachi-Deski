@@ -17,14 +17,17 @@ Adachi rei as a silly desktop companion, she's just happy to be there :)
  - Feed her
  - Update checking
 
-## Pending:
+## Pending (Overall):
  - [ ] Boot animation
  - [ ] Shaders
- - [ ] Settings
  - [ ] Replace Rei's sprites with official ones (thanks retail trash for the suggestion)
+
+## Pending (For next update): 
+ - [ ] Settings
  - [x] Add timeout to karaage to avoid it overflowing the screen when repeatedly spawned, add a limit so it maxes out at half the screen
  - [ ] Add flip option
  - [x] change default pat meter damping
+
 ## Contributing
 [Pull requests](https://github.com/Mejolov24/Adachi-Deski/pulls) are welcome! Any reasonable feature or improvement is appreciated.
 
@@ -32,8 +35,8 @@ Adachi rei as a silly desktop companion, she's just happy to be there :)
  - **Content** No NSFW content
  - **Art Style** must use HEPT32 color pallet for sprites, except realistic sprites like Rei, for her, any is welcome, even full color
  - **AI** While AI usage is accepted for coding help, you cannot:
-    - Use an AI agent to do it for you
-    - Use Generative AI for art
+	- Use an AI agent to do it for you
+	- Use Generative AI for art
 
 ## Bug report
  - When you find a bug, open an [issue](https://github.com/Mejolov24/Adachi-Deski/issues) describing the steps to recreate, your OS and architecture.
