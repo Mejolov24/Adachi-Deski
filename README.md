@@ -21,7 +21,11 @@ Adachi rei as a silly desktop companion, she's just happy to be there :)
  - [ ] Boot animation
  - [ ] Shaders
  - [ ] Replace Rei's sprites with official ones (thanks retail trash for the suggestion)
-
+ - [ ] Make a drop menu like the one from my other program Cloud Control
+ - [ ] Add minigames
+	- [ ] Angry karaage (like angry birds but with karaage)
+ 	- [ ] Falling food 
+ 
 ## Pending (For next update): 
  - [x] Settings
  - [x] Add timeout to karaage to avoid it overflowing the screen when repeatedly spawned, add a limit so it maxes out at half the screen
