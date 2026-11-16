@@ -12,7 +12,7 @@ extends Control
 @export var rei_audio : AudioStreamPlayer
 @export var other_audio : AudioStreamPlayer
 @export var karage_container : Node
-
+@export var explosion_gfx : QuickSpritePlayer
 
 @export_group("Parameters")
 @export var min_blink_interval : float = 4.0
@@ -21,12 +21,13 @@ extends Control
 
 @export var pat_threshold : float = 412.0   # The threshold required to trigger pat()
 @export var pat_hard_cap : float = 412.0  # If pat'ed faster than this, doesnt count (to prevent accidental pats)
-@export var pat_decay_rate : float = 16.0   # How fast the accumulation drains per second when not moving fast enough
+@export var pat_decay_rate : float = 12.0   # How fast the accumulation drains per second when not moving fast enough
 @export var pat_multiplier : float = 0.25
 @export_range(0,1) var blush_threshold : float = 0.5 # in perecentage 
 @export_range(0,1) var face_change_threshold : float = 0.75 # in perecentage
-@export var disable_resonance_fix : bool = false
-const resonance_clear_threshold : int = 100
+@export var disable_chiken_fix : bool = false
+const chiken_clear_threshold : int = 100
+var chiken_clear_in_progress : bool = false
 
 @export var eat_threshold : float = 412.0   # The threshold required to trigger pat()
 @export var eat_decay_rate : float = 5   # How fast the accumulation drains per second when not moving fast enough
@@ -107,8 +108,8 @@ func area_out(_area : Area2D):
 
 
 func eat():
-	eat_accumulation += 100
-	pat_accumulation += 10
+	eat_accumulation += 48
+	pat_accumulation += 12
 	if(current_food): current_food.queue_free()
 	other_audio.stream = eat_sounds.pick_random()
 	other_audio.play()
@@ -153,10 +154,37 @@ func pat_process(intensity : int, delta : float):
 	
 	pat_bar.value = pat_percentage
 
+func chiken_secret():
+	if(chiken_clear_in_progress): return
+	if(karage_container.get_child_count() < chiken_clear_threshold): return
+	chiken_clear_in_progress = true
+	rei_audio.volume_db = -80
+	other_audio.volume_db = -80
+	var audio_player : AudioStreamPlayer = AudioStreamPlayer.new()
+	
+	var chiken_clear_lambda := func():
+		rei_audio.volume_db = 0
+		other_audio.volume_db = 0
+		explosion_gfx.stop()
+		if(audio_player): audio_player.queue_free()
+		for child in karage_container.get_children(): child.queue_free()
+		chiken_clear_in_progress = false
+	
+	var explosion_lambda := func():
+		explosion_gfx.play()
+		if(!audio_player.finished.is_connected(chiken_clear_lambda)): audio_player.finished.connect(chiken_clear_lambda)
+		audio_player.stream = load("res://resources/audio/explosion.wav")
+		audio_player.play()
+	
+	audio_player.stream = load("res://resources/audio/rei/theres_so_much_chiken.wav")
+	add_child(audio_player)
+	if(!audio_player.finished.is_connected(explosion_lambda)): audio_player.finished.connect(explosion_lambda)
+	audio_player.play()
+
 func spawn_chiken():
 	# check if we have an overlaping chiken to avoid accidental click
 	var spawn_pos = get_global_mouse_position()
-	if(!disable_resonance_fix):
+	if(!disable_chiken_fix):
 		for child in karage_container.get_children():
 			if child.global_position.distance_to(spawn_pos) < 30: return
 	
@@ -164,9 +192,9 @@ func spawn_chiken():
 	chiken.position = spawn_pos
 	chiken.hovering = true
 	chiken.holding = true
-	chiken.disable_resonance_fix = disable_resonance_fix
+	chiken.disable_chiken_fix = disable_chiken_fix
 	karage_container.add_child(chiken)
-
+	chiken_secret()
 ## -- setups -- ##
 
 func setup_pat_area():
@@ -194,7 +222,6 @@ func _process(delta: float) -> void:
 	
 	pat_process(mouse_speed,delta);
 	eat_process(delta)
-	print(karage_container.get_children().size())
 
 
 func _on_happynes_value_changed(value: float) -> void:
@@ -205,9 +232,9 @@ func _on_food_value_changed(value: float) -> void:
 	eat_decay_rate = value
 
 func _on_check_button_toggled(toggled_on: bool) -> void:
-	disable_resonance_fix = !toggled_on
+	disable_chiken_fix = !toggled_on
 	for child in karage_container.get_children():
-		child.disable_resonance_fix = !toggled_on
+		child.disable_chiken_fix = !toggled_on
 		if(toggled_on):
 			child.delete_timer.start()
 		else:

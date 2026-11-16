@@ -18,6 +18,8 @@ Adachi rei as a silly desktop companion, she's just happy to be there :)
  - Update checking
 
 ## Pending (Overall):
+ - [ ] Decouple certain functions from main.gd
+ - [ ] Fix naming ambiguity/inconsistency of variable names
  - [ ] Boot animation
  - [ ] Shaders
  - [ ] Replace Rei's sprites with official ones (thanks retail trash for the suggestion)
@@ -31,7 +33,6 @@ Adachi rei as a silly desktop companion, she's just happy to be there :)
  - [x] Add timeout to karaage to avoid it overflowing the screen when repeatedly spawned, add a limit so it maxes out at half the screen
  - [x] Add flip option
  - [x] change default pat meter damping
-
 ## Contributing
 [Pull requests](https://github.com/Mejolov24/Adachi-Deski/pulls) are welcome! Any reasonable feature or improvement is appreciated.
 

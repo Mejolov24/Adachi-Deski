@@ -22,7 +22,7 @@ func _request_completed(result, response_code, headers, body):
 
 func send_update_message():
 	var audio_player : AudioStreamPlayer = AudioStreamPlayer.new()
-	audio_player.stream = load("res://resources/audio/new update.wav")
+	audio_player.stream = load("res://resources/audio/rei/new update.wav")
 	add_child(audio_player)
 	audio_player.play()
 	OS.shell_open(web)

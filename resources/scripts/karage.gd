@@ -1,5 +1,5 @@
 extends RigidBody2D
-@export var delete_time : float = 15
+@export var delete_time : float = 30
 @export var follow_force: float = 1024.0
 @export var max_speed: float = 512.0
 @export var damping: float = 32.0
@@ -9,7 +9,7 @@ extends RigidBody2D
 @export var sprite_2 : Sprite2D
 @export var collision_1 : CollisionShape2D
 @export var collision_2 : CollisionShape2D
-@export var disable_resonance_fix : bool = false
+@export var disable_chiken_fix : bool = false
 var delete_timer : Timer
 var delete_tween : Tween
 
@@ -36,13 +36,13 @@ func _ready() -> void:
 	area.mouse_entered.connect(func(): hovering = true)
 	area.mouse_exited.connect(func(): hovering = false)
 	set_karage_type(randi_range(0,1))
-	set_size(randf_range(1,2))
+	set_size(randf_range(1.2,1.8))
 	
 	delete_timer =  Timer.new()
 	delete_timer.wait_time = delete_time
 	delete_timer.timeout.connect(delete)
 	add_child(delete_timer)
-	if(disable_resonance_fix): return
+	if(disable_chiken_fix): return
 	delete_timer.start()
 
 func _input(event: InputEvent) -> void:
