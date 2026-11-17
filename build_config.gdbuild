@@ -1,0 +1,16 @@
+{
+	"disabled_build_options": {
+		"disable_3d": true,
+		"disable_navigation_3d": true,
+		"disable_physics_3d": true,
+		"disable_xr": true,
+		"forward_mobile_renderer": false,
+		"forward_plus_renderer": false,
+		"module_godot_physics_3d_enabled": false,
+		"rendering_device": false,
+		"sdl": false,
+		"vulkan": false
+	},
+	"disabled_classes": [],
+	"type": "build_profile"
+}

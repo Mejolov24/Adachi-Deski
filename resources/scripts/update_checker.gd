@@ -1,7 +1,7 @@
 extends Node
 var httprequester : HTTPRequest
 
-const current_release = "1.0.0-alpha"
+const current_release = "2.0.0-alpha"
 const api = "https://api.github.com/repos/Mejolov24/Adachi-Deski/releases/latest"
 const web = "https://github.com/Mejolov24/Adachi-Deski/releases/latest"
 

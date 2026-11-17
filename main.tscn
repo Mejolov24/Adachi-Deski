@@ -243,6 +243,14 @@ offset_bottom = 40.0
 theme = ExtResource("6_5vw27")
 toggle_mode = true
 
+[node name="Sprite2D" type="Sprite2D" parent="Button" unique_id=779414662]
+texture_filter = 1
+position = Vector2(19, 19)
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("6_7mycd")
+hframes = 5
+frame = 4
+
 [node name="ChikenBuckerTween" type="Area2D" parent="." unique_id=448388443 node_paths=PackedStringArray("target")]
 position = Vector2(112, 432)
 script = ExtResource("20_getpj")

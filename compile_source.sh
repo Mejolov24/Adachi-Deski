@@ -1,0 +1,3 @@
+echo "Run this at the root directory of the godot 4.7.2-stable release, proyect file a directory up."
+scons platform=windows target=template_release profile=../Adachi-Deski/scons_settings.py build_profile=../Adachi-Deski/build_config.gdbuild winrt=no lto=none arch=x86_32 -j$(nproc)
+scons platform=linux target=template_release profile=../Adachi-Deski/scons_settings.py build_profile=../Adachi-Deski/build_config.gdbuild arch=x86_32 -j$(nproc)
