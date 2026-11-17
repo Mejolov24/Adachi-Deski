@@ -16,6 +16,10 @@ Adachi rei as a silly desktop companion, she's just happy to be there :)
  - Pet her
  - Feed her
  - Update checking
+ - Settings
+   - Configure things like the decay rate of the food or happiness bar.
+
+ - 1 Easter egg (will add more)
 
 ## Pending (Overall):
  - [ ] Decouple certain functions from main.gd
@@ -28,11 +32,6 @@ Adachi rei as a silly desktop companion, she's just happy to be there :)
 	- [ ] Angry karaage (like angry birds but with karaage)
  	- [ ] Falling food 
  
-## Pending (For next update): 
- - [x] Settings
- - [x] Add timeout to karaage to avoid it overflowing the screen when repeatedly spawned, add a limit so it maxes out at half the screen
- - [x] Add flip option
- - [x] change default pat meter damping
 ## Contributing
 [Pull requests](https://github.com/Mejolov24/Adachi-Deski/pulls) are welcome! Any reasonable feature or improvement is appreciated.
 
